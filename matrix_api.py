@@ -91,7 +91,7 @@ class MatrixClient:
         return media_url
 
 
-    def send_media(self, filename, body=""):
+    def send_media(self, filename, msgtype, body=""):
         """
         Sends a media file to the Matrix server.
 
@@ -120,7 +120,7 @@ class MatrixClient:
         message = {
             "body": body,
             "url": media_url,
-            "msgtype": "m.image",
+            "msgtype": msgtype,
         }
         try:
             response = requests.put(
