@@ -144,8 +144,3 @@ class MatrixClient:
     @staticmethod
     def transaction_id():
         return int(uuid.uuid4())
-
-
-    @staticmethod
-    def get_time():
-        return datetime.now().strftime('%X %x')
