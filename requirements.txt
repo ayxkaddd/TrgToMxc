@@ -1,0 +1,5 @@
+requests==2.28.2
+Pyrogram==2.0.104
+TgCrypto==1.2.5
+uuid==1.30
+DateTime==4.3
