@@ -4,7 +4,6 @@ import uuid
 import json
 import logging
 import requests
-from datetime import datetime
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
@@ -83,11 +82,11 @@ class MatrixClient:
                 )
             response.raise_for_status()
         except (OSError, requests.exceptions.RequestException) as e:
-            self.logger.error("Error uploading image: %s", e)
+            self.logger.error("Error uploading media: %s", e)
             return None
         
         media_url = json.loads(response.text)["content_uri"]
-        self.logger.info("Image uploaded successfully")
+        self.logger.info("Media uploaded successfully")
         return media_url
 
 
