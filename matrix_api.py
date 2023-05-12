@@ -11,7 +11,7 @@ logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 class MatrixClient:
 
-    def __init__(self, ACCESS_TOKEN, ROOM_ID, MATRIX_HOMESERVER = "https://matrix.org"):
+    def __init__(self, ACCESS_TOKEN, ROOM_ID, MATRIX_HOMESERVER):
         """
         Initializes the MatrixClient with the provided access token, room ID, and Matrix homeserver URL.
 
