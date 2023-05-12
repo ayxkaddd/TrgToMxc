@@ -4,12 +4,14 @@ import uuid
 import json
 import logging
 import requests
+from datetime import datetime
 
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 class MatrixClient:
 
-    def __init__(self, ACCESS_TOKEN, ROOM_ID, MATRIX_HOMESERVER):
+    def __init__(self, ACCESS_TOKEN, ROOM_ID, MATRIX_HOMESERVER = "https://matrix.org"):
         """
         Initializes the MatrixClient with the provided access token, room ID, and Matrix homeserver URL.
 
@@ -23,6 +25,7 @@ class MatrixClient:
         self.MATRIX_HOMESERVER = MATRIX_HOMESERVER 
         self.MEDIA_API_URL = f"{MATRIX_HOMESERVER}/_matrix/media/r0/upload"
         self.logger = logging.getLogger(__name__)
+
 
 
     def send_text(self, body):
@@ -54,7 +57,8 @@ class MatrixClient:
             self.logger.error("Error sending text message: %s", e)
             return None
         
-        self.logger.info("Text message sent successfully\nINFO:body='%s'", body)
+        self.logger.info("Text message sent successfully")
+        self.logger.info("body='%s'", body)
         return response
 
 
@@ -82,11 +86,12 @@ class MatrixClient:
                 )
             response.raise_for_status()
         except (OSError, requests.exceptions.RequestException) as e:
-            self.logger.error("Error uploading media: %s", e)
+            self.logger.error("Error uploading image: %s", e)
             return None
         
         media_url = json.loads(response.text)["content_uri"]
-        self.logger.info("Media uploaded successfully")
+        self.logger.info("Image uploaded successfully")
+        self.logger.info("media_url:%s", media_url)
         return media_url
 
 
@@ -136,7 +141,8 @@ class MatrixClient:
             self.logger.error("Error sending image: %s", e)
             return None
         
-        self.logger.info("Image sent successfully\nINFO:filenane='%s'", filename)
+        self.logger.info("Image sent successfully")
+        self.logger.info("filenane='%s'", filename)
         return response
 
 
