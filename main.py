@@ -31,9 +31,9 @@ def read_post(clinet, msg):
             media_path = f'downloads/{file_unique_id}.{media_format}'
             
             if msg.caption:
-                matrix.send_media(media_path, msg.caption, msgtype=message_type)
+                matrix.send_media(filename=media_path, msgtype=message_type, body=msg.caption)
             else:
-                matrix.send_media(media_path, msgtype=message_type)
+                matrix.send_media(filename=media_path, msgtype=message_type)
         except Exception as ex:
             print(f"ERROR:{ex}") 
     else:
